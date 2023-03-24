@@ -5,6 +5,30 @@
       "email": "sachin@gmail.com",
       "password": "sachin123",
       "id": 1
+    },
+    {
+      "name": "sagar",
+      "email": "sagar@gmail.com",
+      "password": "12345",
+      "id": 2
+    },
+    {
+      "name": "roshan",
+      "email": "roshan@gmail.com",
+      "password": "987654",
+      "id": 3
+    },
+    {
+      "name": "darsh",
+      "email": "darsh@gmail.com",
+      "password": "45121",
+      "id": 4
+    },
+    {
+      "name": "451245",
+      "email": "pruthvi",
+      "password": "7845212",
+      "id": 5
     }
   ]
 }
