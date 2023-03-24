@@ -1,0 +1,14 @@
+<div class="sign-up-form">
+    <img src="./../../assets/user-icon-260nw-461908279.webp">
+    <h1>Seller Sign-Up</h1>
+    <form #sellerSignUp="ngForm" (ngSubmit)="signUp(sellerSignUp.value)">
+        <input type="name" class="input-box" placeholder="Enter Your Name" ngModel name="name"  >
+        <input type="email" class="input-box" placeholder="Your Email" ngModel name="email"  >
+        <input type="password" class="input-box" placeholder="Your Password" ngModel name="password">
+        <button type="submit" class="sign-up-btn">Sign up</button>
+        <hr>
+        <p class="or">OR</p>
+        <button  class="twitter-btn" href="">Login with twitter</button> 
+        <p>Do you have an account ? <a href="#">Sign in</a></p>
+    </form>
+</div>
