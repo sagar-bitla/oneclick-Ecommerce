@@ -11,7 +11,7 @@ body{
 }
 .sign-up-form{
     width: 350px;
-    box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
+    box-shadow:  20px 20px 20px 20px #ccc;
     background: #fff;
     padding: 18px;
     margin: 3% auto 0;
@@ -62,4 +62,23 @@ hr
 img{
     width: 70px;
     margin-top: -60px;
+}
+.auth-toggle-login{
+    margin-top: 20px;
+    color: blue;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+.log-in-form{
+    width: 350px;
+    box-shadow:  20px 20px 20px 20px #ccc;
+    background: #fff;
+    padding: 18px;
+    margin: 3% auto 0;
+    text-align: center ;
+}
+.log-in-form h1{
+    color: #1c8adb;
+    margin-bottom: 25px;
 }

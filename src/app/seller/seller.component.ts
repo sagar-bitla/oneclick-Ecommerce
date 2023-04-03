@@ -12,18 +12,33 @@ export class SellerComponent implements OnInit {
 
   constructor(private sellerservice:SellerService, private router:Router) { }
 
+  showLogIn=false
+  loginErrrorMsg:string=''
+
   ngOnInit(): void {
+    // this.usergetdata()
   }
 
   signUp(data:SignUp):void{
-    console.log(data);
-    this.sellerservice.userSignUp(data).subscribe((res)=>{
-      if(res){
-        this.router.navigate(['seller-home'])
-        console.log(res)
+    this.sellerservice.userSignUp(data)
+  }
+
+  LogIn(data:SignUp):void{
+    console.log(data)
+    this.sellerservice.userLogIn(data)
+    this.sellerservice.isloggInError.subscribe((iserror)=>{
+      if(iserror){
+        this.loginErrrorMsg='Email and password is not correct'
       }
-      
     })
+  }
+
+  openLogin(){
+     this.showLogIn=true
+  }
+
+  openSignUp(){
+    this.showLogIn=false
   }
 
 }
