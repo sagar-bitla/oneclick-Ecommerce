@@ -30,5 +30,70 @@
       "password": "7845212",
       "id": 5
     }
+  ],
+  "products": [
+    {
+      "name": "NOKIA ",
+      "price": "121212",
+      "color": "black",
+      "category": "mobile",
+      "description": "good product",
+      "url": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-storage-select-202209-6-7inch-yellow?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1676501038043",
+      "id": 1
+    },
+    {
+      "name": "NOKIA ",
+      "price": "18850",
+      "color": "black",
+      "category": "mobile",
+      "description": "good product",
+      "url": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-storage-select-202209-6-7inch-yellow?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1676501038043",
+      "id": 2
+    },
+    {
+      "name": "Sumsung 120",
+      "price": "18850",
+      "color": "black",
+      "category": "mobile",
+      "description": "good product",
+      "url": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-storage-select-202209-6-7inch-yellow?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1676501038043",
+      "id": 4
+    },
+    {
+      "name": "Sumsung 120",
+      "price": "18850",
+      "color": "black",
+      "category": "mobile",
+      "description": "good product",
+      "url": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-storage-select-202209-6-7inch-yellow?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1676501038043",
+      "id": 5
+    },
+    {
+      "name": "Sumsung 120",
+      "price": "18850",
+      "color": "black",
+      "category": "mobile",
+      "description": "good product",
+      "url": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-storage-select-202209-6-7inch-yellow?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1676501038043",
+      "id": 6
+    },
+    {
+      "name": "Sumsung 120",
+      "price": "18850",
+      "color": "black",
+      "category": "mobile",
+      "description": "good product",
+      "url": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-storage-select-202209-6-7inch-yellow?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1676501038043",
+      "id": 7
+    },
+    {
+      "name": "Sumsung 120",
+      "price": "18850",
+      "color": "black",
+      "category": "mobile",
+      "description": "good product",
+      "url": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-storage-select-202209-6-7inch-yellow?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1676501038043",
+      "id": 8
+    }
   ]
 }

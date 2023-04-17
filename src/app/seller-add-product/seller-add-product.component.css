@@ -27,7 +27,7 @@ h2{
     padding-bottom: 15px;
 }
 .input-box:nth-child(2n){
-    justify-content: end;
+    justify-content: start;
 }
 .input-box input{
     height: 40px;
@@ -72,6 +72,6 @@ h2{
     .input-box:nth-child(2n){
         display: flex;
         justify-content: space-between;
-        width: 60%;
+        width: 100%;
     }
 }

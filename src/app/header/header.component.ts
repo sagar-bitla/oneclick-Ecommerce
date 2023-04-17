@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   constructor(private route:Router) { }
 
   ngOnInit(): void {
+    this.route.navigate(['/home'])
     this.route.events.subscribe((val:any)=>{
       if(val.url){
         if(localStorage.getItem('seller')&& val.url.includes('seller')){
