@@ -1,7 +1,9 @@
 <ngb-carousel *ngIf="popularProducts">
     <ng-template *ngFor="let item of popularProducts" ngbSlide>
         <div class="picsum-img-wrapper">
+            <a routerLink="/details/{{item.id}}">
             <img class="product-header-img" src="{{item.url}}" alt="Random first slide">
+        </a>
         </div>
         <div class="carousel-caption">
             <h3 style="color:black">{{item.name}}</h3>
@@ -11,20 +13,20 @@
 </ngb-carousel>
 
 
-<div class="container" id="product-cards">
+<div class=" " id="product-cards">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
     <div class="row" style="margin-top: 30px;">
         <div class="col-sm-3" *ngFor="let item of trendyProducts">
             <div class="card mt-2" >
-                <img src="{{item.url}}" alt="">
+                <img [src]=[item.url] alt="">
                 <div class="card-body">
                     <h3>{{item.name}}</h3>
                     <p>{{item.description}}</p>
                     <span>color:{{item.color}}</span><br>
-                    <span>Price:{{item.price}}</span><small>Rs</small><hr>
+                    <span>Price:{{item.price}}</span><small>Rs</small>
                     <div class="product-footer">
                         <a href="">Details</a>
                         <a href="">Add to cart</a>
-                    </div>
+                    </div>  
                 </div>
             </div>
         </div>

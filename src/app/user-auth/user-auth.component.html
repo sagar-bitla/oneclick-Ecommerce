@@ -1,0 +1,29 @@
+
+<div class="user-auth">
+    <div class="sign-up-form" *ngIf="showLogIn">
+        <img src="./../../assets/user-icon-260nw-461908279.webp">
+        <h1>User Sign-Up</h1>
+        <form #userSignUp="ngForm" (ngSubmit)="signUp(userSignUp.value)">
+            <input type="text" class="input-box" placeholder="Enter Your Name" ngModel name="name"  >
+            <input type="email" class="input-box" placeholder="Your Email" ngModel name="email"  >
+            <input type="password" class="input-box" placeholder="Your Password" ngModel name="password">
+            <button type="submit" class="sign-up-btn">Sign up</button>
+            <hr>
+            <p class="or">OR</p>
+            <!-- <button  class="twitter-btn" href="">Login with twitter</button>  -->
+            <a class="auth-toggle-login" (click)="openLogin()">Already hav an account? open Login</a>
+        </form>
+    </div>
+    <!-- login page -->
+    <div class="log-in-form" *ngIf="!showLogIn">
+        <img src="./../../assets/user-icon-260nw-461908279.webp">
+        <h1 style="color:blueviolet">User Login</h1>
+        <form #userLogIn="ngForm" (ngSubmit)="LogIn(userLogIn.value)">
+            <input type="email" class="input-box" placeholder="Enter Your User Email" ngModel name="email"  >
+            <input type="password" class="input-box" placeholder="Enter Your User Password" ngModel name="password">
+            <button type="submit" class="sign-up-btn" >Login</button>
+            <a class="auth-toggle-login" (click)="openSignUp()">Want to create account</a>
+            <p style="color: red"></p>
+        </form>
+    </div>
+</div>

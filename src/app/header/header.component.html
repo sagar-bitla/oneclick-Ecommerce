@@ -7,19 +7,36 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngSwitch]="menuType">
       <ul class="navbar-nav mr-auto" *ngSwitchCase="'default'">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" >Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/seller-auth">Seller</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" routerLink="/user-auth">Login/SignUp</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Cart</a>
         </li>
       </ul>
 
+      <ul class="navbar-nav mr-auto" *ngSwitchCase="'user'">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/seller-auth">Seller</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="userLogout()">LogOut</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:red">{{userName | titlecase}}</a>
+        </li>
+      </ul>
 
       <ul class="navbar-nav mr-auto" *ngSwitchCase="'seller'">
         
@@ -27,18 +44,23 @@
           <a class="nav-link" routerLink="/seller-add-product">Add product</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/seller-home">Product List <span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/seller-home">Product List <span class="sr-only"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  (click)="logOut()">Logout</a>
+          <a class="nav-link"  (click)="sellerLogOut()">Logout</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" >{{sellerName | titlecase}}</a>
+          <a class="nav-link" style="color:red">{{sellerName | titlecase}}</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0" *ngIf="menuType=='default'">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        <input #searchInput class="form-control mr-sm-2" (keyup)="searchProduct($event)" (blur)="hideSearch()" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="submitSearch(searchInput.value)">Search</button>
+        <ul class="suggested-result" *ngIf="searchResult">
+          <li *ngFor="let item of searchResult">
+            <a>{{item.name}}</a>
+          </li>
+        </ul>
       </form>
     </div>
   </nav>

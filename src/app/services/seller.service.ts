@@ -16,6 +16,9 @@ export class SellerService {
 
   constructor(private http: HttpClient, private route: Router) { }
 
+  // {observe:'response'}    ------->   to display full response
+
+
   userSignUp(data: SignUp) {
     this.http.post('http://localhost:3000/seller', data, { observe: 'response' }).subscribe((res) => {
       this.isSellerLoggedIn.next(true)
@@ -26,7 +29,8 @@ export class SellerService {
     return false
   }
 
-  //this reloader function is work on when user entered after signup and when reload land on same page 
+  
+  //  reloader()  this function means once seller entered sign up after not relooad the signup page
   reloader() {
     if (localStorage.getItem('seller')) {
       this.isSellerLoggedIn.next(true)

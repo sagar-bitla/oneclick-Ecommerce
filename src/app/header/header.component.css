@@ -1,3 +1,23 @@
 .navbar-color{
     background-color: #21afde !important;
 }
+.suggested-result{
+    position: absolute;
+    /* display: list-item; */
+    z-index: 10;
+    background-color: azure;
+    width: 206px;
+    top: 49px;
+    border: 1px solid white;
+}
+.suggested-result li{
+    border: 1px solid white;
+    padding: 5px;
+}
+.suggested-result li a{
+    cursor: pointer;
+    color: #21afde;
+}
+.nav-link{
+    cursor: pointer;
+}
