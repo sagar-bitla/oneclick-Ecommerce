@@ -82,3 +82,9 @@ img{
     color: #1c8adb;
     margin-bottom: 25px;
 }
+button:disabled{
+    cursor:not-allowed
+}
+.err-p{
+    color: red;
+}

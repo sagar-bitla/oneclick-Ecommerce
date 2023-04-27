@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { LogIn, SignUp } from '../data-type';
 
@@ -7,6 +7,8 @@ import { LogIn, SignUp } from '../data-type';
   providedIn: 'root'
 })
 export class UserService {
+
+  invalidUserName = new EventEmitter<boolean>(false)
 
   constructor(private http:HttpClient,private router:Router) { }
 
@@ -27,8 +29,11 @@ export class UserService {
     {observe:'response'}).subscribe((res:any)=>{
       console.log(res)
       if(res && res.body && res.body.length){
+        this.invalidUserName.emit(false)
         localStorage.setItem('user',JSON.stringify(res.body[0]))
         this.router.navigate(["/home"])
+      }else{
+        this.invalidUserName.emit(true)
       }
     })
   }

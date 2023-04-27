@@ -4,6 +4,7 @@
         <img src="./../../assets/user-icon-260nw-461908279.webp">
         <h1>User Sign-Up</h1>
         <form #userSignUp="ngForm" (ngSubmit)="signUp(userSignUp.value)">
+            
             <input type="text" class="input-box" placeholder="Enter Your Name" ngModel name="name"  >
             <input type="email" class="input-box" placeholder="Your Email" ngModel name="email"  >
             <input type="password" class="input-box" placeholder="Your Password" ngModel name="password">
@@ -19,11 +20,17 @@
         <img src="./../../assets/user-icon-260nw-461908279.webp">
         <h1 style="color:blueviolet">User Login</h1>
         <form #userLogIn="ngForm" (ngSubmit)="LogIn(userLogIn.value)">
-            <input type="email" class="input-box" placeholder="Enter Your User Email" ngModel name="email"  >
-            <input type="password" class="input-box" placeholder="Enter Your User Password" ngModel name="password">
-            <button type="submit" class="sign-up-btn" >Login</button>
+            <p class="err-p">{{userError}}</p>
+            <input type="email" class="input-box" placeholder="Enter Your User Email" ngModel name="email" #email="ngModel" email required>
+            <p class="invalid-input"><span *ngIf="email.invalid && email.touched ">Please Enter Valid Email</span></p>
+
+            <input type="password" class="input-box" placeholder="Enter Your User Password" ngModel #password="ngModel" minlength="2" maxlength="20" name="password" required>
+            <p class="invalid-input"><span *ngIf="password.invalid && password.touched" >Please Enter Valid Password</span></p>
+
+            <button [disabled]="userLogIn.invalid" type="submit" class="sign-up-btn" >Login</button>
+
             <a class="auth-toggle-login" (click)="openSignUp()">Want to create account</a>
-            <p style="color: red"></p>
+            
         </form>
     </div>
 </div>

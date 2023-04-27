@@ -10,6 +10,7 @@ import { UserService } from '../services/user.service';
 export class UserAuthComponent implements OnInit {
 
   showLogIn:boolean=true
+  userError:string=" "
 
   constructor(private userservice:UserService) { }
 
@@ -23,6 +24,13 @@ export class UserAuthComponent implements OnInit {
 
   LogIn(data:LogIn){
     this.userservice.userLogin(data)
+    this.userservice.invalidUserName.subscribe((res)=>{
+      console.log(res,"invaliddd")
+      if(res){
+        // window.alert("Please enter valid user details")
+        this.userError='Please enter valid user details'
+      }
+    })
   }
 
   openLogin(){

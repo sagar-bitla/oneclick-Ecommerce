@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngSwitch]="menuType">
       <ul class="navbar-nav mr-auto" *ngSwitchCase="'default'">
         <li class="nav-item active">
-          <a class="nav-link" >Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/seller-auth">Seller</a>
@@ -16,7 +16,12 @@
           <a class="nav-link" routerLink="/user-auth">Login/SignUp</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cart</a>
+          <a class="nav-link" href="#">Cart
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+              {{cartItem}}
+            </span>
+          </a>
+        
         </li>
       </ul>
 
@@ -31,7 +36,11 @@
           <a class="nav-link" (click)="userLogout()">LogOut</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cart</a>
+          <a class="nav-link" href="#">Cart
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+              {{cartItem}}
+            </span>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" style="color:red">{{userName | titlecase}}</a>

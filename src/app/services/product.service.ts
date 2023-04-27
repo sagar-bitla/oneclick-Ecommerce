@@ -1,12 +1,14 @@
 import { query } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Product } from '../data-type';
+import { EventEmitter, Injectable } from '@angular/core';
+import { cart, Product } from '../data-type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+
+  cartDataLength= new EventEmitter<Product[] | []>()
 
   constructor(private http:HttpClient) { }
 
@@ -38,5 +40,34 @@ export class ProductService {
   }
   searchProduct(query:string){
     return this.http.get<Product[]>(`http://localhost:3000/products?=${query}`)
+  }
+
+  //AddtoCart without LogIn 
+  localAddToCart(data:Product){
+    let cartData=[];
+    let localcart=localStorage.getItem('localCart')
+    if(!localcart){
+      localStorage.setItem('localCart',JSON.stringify([data]));
+    }else{
+      cartData=JSON.parse(localcart)
+      cartData.push(data)
+      localStorage.setItem('localCart',JSON.stringify(cartData))
+      console.log("cartdatatatatataat",cartData)
+    }
+    this.cartDataLength.emit(cartData)
+  }
+
+  removeItemFromCart(productId:number){
+    let cartData=localStorage.getItem('localCart');
+    if(cartData){
+      let items:Product[]=JSON.parse(cartData);
+      items=items.filter((item:Product)=>productId!==item.id)
+      localStorage.setItem('localCart',JSON.stringify(items))
+      this.cartDataLength.emit(items)
+    }
+  }
+
+  addToCart(cartData:cart){
+    return this.http.post('http://localhost:3000/cart',cartData)
   }
 }

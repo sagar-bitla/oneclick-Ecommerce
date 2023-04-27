@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   sellerName: string = '';
   userName: string = '';
   searchResult: undefined | Product[]
+  cartItem = 0;
 
   constructor(private route: Router, private productservice: ProductService) { }
 
@@ -42,6 +43,16 @@ export class HeaderComponent implements OnInit {
       }
     })
 
+    // addtocart badge number increment and decrement function
+    let cartData = localStorage.getItem('localCart');
+    if (cartData) {
+      this.cartItem = JSON.parse(cartData).length
+      console.log("cartlegthhhhh", this.cartItem)
+    }
+    
+    this.productservice.cartDataLength.subscribe((item) => {
+      this.cartItem = item.length
+    })
 
   }
 

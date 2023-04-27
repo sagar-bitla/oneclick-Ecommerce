@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.invalid-input{
+    color: red;
+    font-size: 14px;
+    margin-top: -7px;
+}

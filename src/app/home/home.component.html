@@ -2,8 +2,8 @@
     <ng-template *ngFor="let item of popularProducts" ngbSlide>
         <div class="picsum-img-wrapper">
             <a routerLink="/details/{{item.id}}">
-            <img class="product-header-img" src="{{item.url}}" alt="Random first slide">
-        </a>
+                <img class="product-header-img" src="{{item.url}}" alt="Random first slide">
+            </a>
         </div>
         <div class="carousel-caption">
             <h3 style="color:black">{{item.name}}</h3>
@@ -13,11 +13,13 @@
 </ngb-carousel>
 
 
-<div class=" " id="product-cards">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+<div class=" " id="product-cards">
     <div class="row" style="margin-top: 30px;">
         <div class="col-sm-3" *ngFor="let item of trendyProducts">
-            <div class="card mt-2" >
-                <img [src]=[item.url] alt="">
+            <div class="card mt-2">
+                <a routerLink="/details/{{item.id}}">
+                    <img class="product-cart-img" [src]=[item.url] alt="">
+                </a>
                 <div class="card-body">
                     <h3>{{item.name}}</h3>
                     <p>{{item.description}}</p>
@@ -26,7 +28,7 @@
                     <div class="product-footer">
                         <a href="">Details</a>
                         <a href="">Add to cart</a>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
