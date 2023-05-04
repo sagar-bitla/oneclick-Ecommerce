@@ -20,7 +20,7 @@ export class SellerService {
 
 
   userSignUp(data: SignUp) {
-    this.http.post('http://localhost:3000/seller', data, { observe: 'response' }).subscribe((res) => {
+    this.http.post('http://localhost:4000/seller', data, { observe: 'response' }).subscribe((res) => {
       this.isSellerLoggedIn.next(true)
       localStorage.setItem('seller', JSON.stringify(res.body))
       this.route.navigate(['seller-home'])
@@ -40,7 +40,7 @@ export class SellerService {
 
   userLogIn(data: LogIn) {
     console.log(data)
-    this.http.get(`http://localhost:3000/seller?email=${data.email}&password=${data.password}`,
+    this.http.get(`http://localhost:4000/seller?email=${data.email}&password=${data.password}`,
       { observe: 'response' }).subscribe((res: any) => {
         console.log(res)
         if (res && res.body && res.body.length) {

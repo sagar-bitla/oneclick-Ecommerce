@@ -18,6 +18,7 @@ export interface Product{
     url:string,
     id:number,
     quantity:undefined | number,
+    productId:undefined | number,
 }
 
 export interface cart{

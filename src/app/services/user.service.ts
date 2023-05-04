@@ -15,7 +15,7 @@ export class UserService {
   // {observe:'response'}    ------->   to display full response
 
   userSignup(data:SignUp){
-    this.http.post("http://localhost:3000/user",data,{observe:'response'}).subscribe((res)=>{
+    this.http.post("http://localhost:4000/user",data,{observe:'response'}).subscribe((res)=>{
       console.log(res)
       if(res){
         localStorage.setItem('user',JSON.stringify(res.body))
@@ -25,11 +25,12 @@ export class UserService {
   }
 
   userLogin(data:LogIn){
-    this.http.get(`http://localhost:3000/user?email=${data.email}&password=${data.password}`,
+    this.http.get(`http://localhost:4000/user?email=${data.email}&password=${data.password}`,
     {observe:'response'}).subscribe((res:any)=>{
       console.log(res)
       if(res && res.body && res.body.length){
         this.invalidUserName.emit(false)
+        // localStorage.setItem('user',JSON.parse(res.body[0]))
         localStorage.setItem('user',JSON.stringify(res.body[0]))
         this.router.navigate(["/home"])
       }else{

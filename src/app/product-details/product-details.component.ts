@@ -23,21 +23,40 @@ export class ProductDetailsComponent implements OnInit {
       console.log(productId)
       this.productData = res
       console.log("productdataaaaa", this.productData)
-    })
 
-    let cartData = localStorage.getItem('localCart');
-    if (productId && cartData) {
-      let items = JSON.parse(cartData);
-      items = items.filter((item: Product) => productId == item.id.toString())
-      if (items.length) {
-        this.removeCart = true
-      } else {
-        this.removeCart = false
+
+      let cartData = localStorage.getItem('localCart');
+      if (productId && cartData) {
+        let items = JSON.parse(cartData);
+        items = items.filter((item: Product) => productId == item.id.toString())
+        console.log("itemssssss",items)
+        if (items.length) {
+          this.removeCart = true
+        } else {
+          this.removeCart = false
+        }
+      } 
+
+      let user = localStorage.getItem('user')
+
+      if(user){
+        let userId = user && JSON.parse(user).id
+        this.productservice.getCardList(userId)
+        this.productservice.cartDataLength.subscribe((result)=>{
+            //lect 40
+        let item =  result.filter((item:Product)=>productId?.toString()===item.productId?.toString())
+
+        if(item.length){
+          this.removeCart =true
+        }
+        })
       }
-    }
+      
+
+    })
   }
 
-  handleQuantity(val: string) {
+  handleQuantity(val:string) {
     if (this.productQunatity < 20 && val === 'plus') {
       // this.productQunatity=this.productQunatity+1
       this.productQunatity++
@@ -49,30 +68,32 @@ export class ProductDetailsComponent implements OnInit {
   addToCart() {
     if (this.productData) {
       this.productData.quantity = this.productQunatity
+      console.log("productquantitytytyt",this.productQunatity)
 
       //if condition part when user addtocart without using login 
       if (!localStorage.getItem('user')) {
-        console.log(this.productData)
+        console.log("if not user not logged in",this.productData)
         this.productservice.localAddToCart(this.productData)
         this.removeCart = true
       } else {
         //else condition part is after user login addtocart
         console.log("user is logged in")
         let user = localStorage.getItem('user')
-        let userId= user && JSON.parse(user).id
-        console.log("usererrrerididid",userId);
+        let userId = user && JSON.parse(user).id
+        console.log("usererrrerididid", userId);
 
         //create a object 
-        let cardData:cart={
+        let cardData: cart = {
           ...this.productData,
-           userId:userId,
-           productId:this.productData.id,
+          userId: userId,
+          productId: this.productData.id,
         }
         delete cardData.id;
-        console.log("caeeee",cardData)
-        this.productservice.addToCart(cardData).subscribe((result)=>{
-          if(result){
-            alert("product added in cart")
+        console.log("caeeee", cardData)
+        this.productservice.addToCart(cardData).subscribe((result) => {
+          if (result) {
+            this.productservice.getCardList(userId)
+            this.removeCart = true
           }
         })
       }
