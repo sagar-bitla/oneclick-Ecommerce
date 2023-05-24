@@ -29,34 +29,34 @@ export class ProductDetailsComponent implements OnInit {
       if (productId && cartData) {
         let items = JSON.parse(cartData);
         items = items.filter((item: Product) => productId == item.id.toString())
-        console.log("itemssssss",items)
+        console.log("itemssssss", items)
         if (items.length) {
           this.removeCart = true
         } else {
           this.removeCart = false
         }
-      } 
+      }
 
       let user = localStorage.getItem('user')
 
-      if(user){
+      if (user) {
         let userId = user && JSON.parse(user).id
         this.productservice.getCardList(userId)
-        this.productservice.cartDataLength.subscribe((result)=>{
-            //lect 40
-        let item =  result.filter((item:Product)=>productId?.toString()===item.productId?.toString())
+        this.productservice.cartDataLength.subscribe((result) => {
+          //lect 40
+          let item = result.filter((item: Product) => productId?.toString() === item.productId?.toString())
 
-        if(item.length){
-          this.removeCart =true
-        }
+          if (item.length) {
+            this.removeCart = true
+          }
         })
       }
-      
+
 
     })
   }
 
-  handleQuantity(val:string) {
+  handleQuantity(val: string) {
     if (this.productQunatity < 20 && val === 'plus') {
       // this.productQunatity=this.productQunatity+1
       this.productQunatity++
@@ -68,11 +68,11 @@ export class ProductDetailsComponent implements OnInit {
   addToCart() {
     if (this.productData) {
       this.productData.quantity = this.productQunatity
-      console.log("productquantitytytyt",this.productQunatity)
+      console.log("productquantitytytyt", this.productQunatity)
 
       //if condition part when user addtocart without using login 
       if (!localStorage.getItem('user')) {
-        console.log("if not user not logged in",this.productData)
+        console.log("if not user not logged in", this.productData)
         this.productservice.localAddToCart(this.productData)
         this.removeCart = true
       } else {
@@ -127,9 +127,14 @@ export class ProductDetailsComponent implements OnInit {
   //   }
   // }
 
+  //removecart function if condition is remove from cart when cart added in localstorage and else condition is when user logi after cart added 
   RemoveCart(productId: number) {
-    this.productservice.removeItemFromCart(productId);
-    this.removeCart = false
+    if (!localStorage.getItem('user')) {
+      this.productservice.removeItemFromCart(productId);
+      this.removeCart = false
+    } else {
+      
+    }
   }
 
   //------------------removecart without using login && without using service file----------------------

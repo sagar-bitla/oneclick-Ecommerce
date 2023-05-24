@@ -24,8 +24,6 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  buttonClick(event:any){
-    console.log(event)
-  }
+  
 
 }
