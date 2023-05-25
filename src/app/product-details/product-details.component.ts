@@ -13,6 +13,7 @@ export class ProductDetailsComponent implements OnInit {
   productData: undefined | Product
   productQunatity: number = 1
   removeCart = false
+  cardData: Product | undefined
   constructor(private activateRoute: ActivatedRoute, private productservice: ProductService) { }
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class ProductDetailsComponent implements OnInit {
       this.productData = res
       console.log("productdataaaaa", this.productData)
 
-
+      //when added cart localstorage i.e when user before loggedin
       let cartData = localStorage.getItem('localCart');
       if (productId && cartData) {
         let items = JSON.parse(cartData);
@@ -37,16 +38,20 @@ export class ProductDetailsComponent implements OnInit {
         }
       }
 
+      //when user login 
       let user = localStorage.getItem('user')
-
       if (user) {
         let userId = user && JSON.parse(user).id
         this.productservice.getCardList(userId)
         this.productservice.cartDataLength.subscribe((result) => {
           //lect 40
           let item = result.filter((item: Product) => productId?.toString() === item.productId?.toString())
+          console.log("111111", item)
 
           if (item.length) {
+            console.log("iteemmm", item.length)
+            console.log("itemmm1", item[0])
+            this.cardData = item[0]
             this.removeCart = true
           }
         })
@@ -127,13 +132,25 @@ export class ProductDetailsComponent implements OnInit {
   //   }
   // }
 
+
   //removecart function if condition is remove from cart when cart added in localstorage and else condition is when user logi after cart added 
   RemoveCart(productId: number) {
     if (!localStorage.getItem('user')) {
       this.productservice.removeItemFromCart(productId);
-      this.removeCart = false
+
     } else {
-      
+      console.log(this.cardData);
+      let user = localStorage.getItem('user')
+      let userId = user && JSON.parse(user).id
+      console.log("usererrrerididid", userId);
+
+      // why we always api called like && operator bcoz bth condition should be statisfied this cardData && and any other api bcoz cardData and particular api should be always defined ------lect 41
+      this.cardData && this.productservice.removeToCart(this.cardData.id).subscribe((res) => {
+        if (res) {
+          this.productservice.getCardList(userId)
+        }
+      })
+      this.removeCart = false
     }
   }
 

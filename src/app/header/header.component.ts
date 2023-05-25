@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
           this.userName = userData.name
           console.log("username", this.userName)
           this.menuType = "user";
+          this.productservice.getCardList(userData.id)
         } else {
           console.log("outside seller")
           this.menuType = "default"

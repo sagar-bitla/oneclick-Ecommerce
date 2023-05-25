@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-11 mx-auto">
+            <div class="row mt-5 gx-3">
+                <!-- left side div -->
+                <div class="col-md-12 col-lg-8 col-11 mx-auto main_cart mb-lg-0 mb-5 shadow">
+                    <div class="card p-4">
+                        <h2 class="py-4 font-weight-bold">Cart (2 items)</h2>
+                        <div class="row">
+
+                            <!-- card images div -->
+                            <div class="col-md-5 col-11 mx-auto bg-light d-flex justify-content-center
+                           align-items-center shadow product_img">
+                                <img src="../../assets/1567665.webp" class="img-fluid" alt="cardimage">
+                            </div>
+
+                            <!-- cart product details  -->
+                            <div class="col-md-7 col-11 mx-auto px-4 mt-2">
+                                <div class="row">
+
+                                    <!-- product name  -->
+                                    <div class="col-6 card-title">
+                                        <div class="mb-4 product_name">Blue Zara Shirt</div>
+                                        <p class="mb-2">Shirt-blue</p>
+                                        <p class="mb-2">color-blue</p>
+                                        <p class="mb-3">size M</p>
+                                    </div>
+
+                                    <!-- quantity increment decrement -->
+                                    <div class="col-6">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-end">
+                                                <li class="page-item"><button class="page-link">+</button></li>
+                                                <li class="page-item"><input type="text" name="" class="page-link"
+                                                        value="1" id="textbox"></li>
+                                                <li class="page-item"><button class="page-link">-</button></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                                <!-- remover move and price -->
+                                <div class="row">
+                                    <div class="col-9 d-flex justify-content-between remove_wish">
+                                        <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                            </svg>Remove item</p>
+                                        <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                            </svg>Move to wish list</p>
+                                    </div>
+                                    <div class="col-3 d-flex justify-content-end price_money">
+                                        <h6>$<span id="itemval">0.00</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- right side div -->
+                <div class="col-md-12 col-lg-4 col-11 mx-auto mt-lg-0 mt-md-5">
+                    <div class="right_side p-3 shadow bg-white">
+                        <h2 class="product_name mb-5">Total Amount</h2>
+                        <div class="price_indiv d-flex justify-content-between">
+                            <p>product amount</p>
+                            <p>$<span>0.00</span></p>
+                        </div>
+                        <div class="price_indiv d-flex justify-content-between">
+                            <p>shipping charge</p>
+                            <p>$50.00</p>
+                        </div>
+                        <hr/>
+                        <div class="total-amt d-flex justify-content-between ">
+                            <p>The total amount of (including VAT)</p>
+                            <p>$<span id="total_cart_amt">0.00</span></p>
+                        </div>
+                        <button class="btn btn-primary">CHECKOUT</button>
+                    </div>
+
+                    <!-- discount code part -->
+                    <div class="discount_code mt-3 shadow">
+                        <div class="card">
+                            <div class="card-body">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
