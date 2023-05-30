@@ -19,7 +19,6 @@ export class UserService {
       console.log(res)
       if(res){
         localStorage.setItem('user',JSON.stringify(res.body))
-        this.router.navigate(["/home"])
       }
     })
   }
