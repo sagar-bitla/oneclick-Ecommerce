@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
+import { CheckoutComponent } from '../checkout/checkout.component';
 import { cart, priceSummary, Product } from '../data-type';
 import { ProductService } from '../services/product.service';
 
@@ -22,7 +23,7 @@ export class CartPageComponent implements OnInit {
     total: 0
   };
 
-  constructor(private activateRoute: ActivatedRoute, private productService: ProductService) { }
+  constructor(private productService: ProductService,private router:Router) { }
 
   ngOnInit(): void {
     //lecture 43
@@ -56,6 +57,9 @@ export class CartPageComponent implements OnInit {
     })
 
     //end   
+  }
+  checkout(){
+    this.router.navigate(['/checkout'])
   }
 }
 

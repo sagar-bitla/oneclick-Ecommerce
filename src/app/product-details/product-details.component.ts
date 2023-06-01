@@ -72,8 +72,9 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart() {
     if (this.productData) {
+      //productQunatity value added and store into the productData.quantity
       this.productData.quantity = this.productQunatity
-      console.log("productquantitytytyt", this.productQunatity)
+      console.log("productquantitytytyt", this.productData.quantity)
 
       //if condition part when user addtocart without using login 
       if (!localStorage.getItem('user')) {

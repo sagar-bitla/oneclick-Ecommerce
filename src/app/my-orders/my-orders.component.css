@@ -1,0 +1,14 @@
+.order{
+    height: 100px;
+    width: 100px;
+}
+.orderDatas{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.alert-msg{
+    width:max-content;
+    margin:auto
+}

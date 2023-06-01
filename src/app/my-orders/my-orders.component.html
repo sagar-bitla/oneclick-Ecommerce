@@ -1,0 +1,43 @@
+<h3 class="text-center mt-4">My orders</h3>
+
+<div class="container">
+   <div class="alert alert-success alert-msg" role="alert" *ngIf="messageVisible" width="50%">
+    {{ordermsg}}
+  </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <span>Order Id</span>
+        </div>
+        <div class="col-sm-2">
+            <span>Order Id</span>
+        </div>
+        <div class="col-sm-2">
+            <span>price </span>
+        </div>
+        <div class="col-sm-2">
+            <span>Status</span>
+        </div>
+        <div class="col-sm-2">
+            <span>Action</span>
+        </div>
+    </div>
+</div>
+<div class="container orderDatas">
+    <div class="row" *ngFor="let order of orderData">
+        <div class="col-sm-2">
+            <img class="order" src="../../assets/p11.jpg">
+        </div>
+        <div class="col-sm-2">
+            <span>#{{order.id}}</span>
+        </div>
+        <div class="col-sm-2">
+            <span>{{order.totalPrice}} </span>
+        </div>
+        <div class="col-sm-2">
+            <span>In process</span>
+        </div>
+        <div class="col-sm-2">
+            <span><button class="form-button" (click)="cancelOrder(order.id)">Cancel order</button></span>
+        </div>
+    </div>
+</div>
