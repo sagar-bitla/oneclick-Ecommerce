@@ -140,7 +140,7 @@ export class ProductDetailsComponent implements OnInit {
       this.productservice.removeItemFromCart(productId);
 
     } else {
-      console.log("carddddd",this.cardData);
+      console.log("carddddd", this.cardData);
       let user = localStorage.getItem('user')
       let userId = user && JSON.parse(user).id
       console.log("usererrrerididid", userId);

@@ -11,20 +11,20 @@ import { ProductService } from '../services/product.service';
 })
 export class MyOrdersComponent implements OnInit {
 
-  orderData:order[]|undefined
-  ordermsg:string|undefined
-  messageVisible:boolean|undefined
+  orderData: order[] | undefined
+  ordermsg: string | undefined
+  messageVisible: boolean | undefined
 
-  constructor(private productservice:ProductService,private route: ActivatedRoute,private location: Location) { }
+  constructor(private productservice: ProductService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.getOrderList();
 
     //this queryparams ordermesssege received from checkout page via queryparam
-    this.route.queryParams.subscribe(params=>{
-      console.log("params",params)
-      this.messageVisible=true
-      this.ordermsg=params.orderalert
+    this.route.queryParams.subscribe(params => {
+      console.log("params", params)
+      this.messageVisible = true
+      this.ordermsg = params.orderalert
       //declare a method to hide the message and remove the query parameter from the URL:we can use(location service)
       const ordermsg = this.location.path().split('?')[0];
       this.location.replaceState(ordermsg);
@@ -32,20 +32,20 @@ export class MyOrdersComponent implements OnInit {
 
     //settimeout use bcoz after 5sec ordermessge should be not display
     setTimeout(() => {
-      this.messageVisible=false
+      this.messageVisible = false
     }, 5000);
   }
-  
-  cancelOrder(orderId:number|undefined){
-    orderId && this.productservice.cancelOrder(orderId).subscribe((res)=>{
+
+  cancelOrder(orderId: number | undefined) {
+    orderId && this.productservice.cancelOrder(orderId).subscribe((res) => {
       this.getOrderList();
     })
   }
 
-  getOrderList(){
-    this.productservice.orderList().subscribe((result)=>{
-      this.orderData=result
-      console.log("orderdattt",this.orderData)
+  getOrderList() {
+    this.productservice.orderList().subscribe((result) => {
+      this.orderData = result
+      console.log("orderdattt", this.orderData)
     })
   }
 

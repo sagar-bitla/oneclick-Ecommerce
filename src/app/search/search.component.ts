@@ -10,15 +10,15 @@ import { ProductService } from '../services/product.service';
 })
 export class SearchComponent implements OnInit {
 
-  searchResult:undefined | Product[]
+  searchResult: undefined | Product[]
 
-  constructor(private activateRoute:ActivatedRoute,private product:ProductService) { }
+  constructor(private activateRoute: ActivatedRoute, private product: ProductService) { }
 
   ngOnInit(): void {
-    let query=this.activateRoute.snapshot.paramMap.get('query')
-    console.log(query,"parammmm")
-    query && this.product.searchProduct(query).subscribe((res)=>{
-      this.searchResult=res
+    let query = this.activateRoute.snapshot.paramMap.get('query')
+    console.log(query, "parammmm")
+    query && this.product.searchProduct(query).subscribe((res) => {
+      this.searchResult = res
     })
   }
 

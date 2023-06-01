@@ -8,113 +8,112 @@ import { cart, order, Product } from '../data-type';
 })
 export class ProductService {
 
-  cartDataLength= new EventEmitter<Product[] | []>()
+  cartDataLength = new EventEmitter<Product[] | []>()
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  addProduct(data:Product){
+  addProduct(data: Product) {
     console.log("product service called")
-    return this.http.post('http://localhost:3000/products',data)
+    return this.http.post('http://localhost:3000/products', data)
   }
 
-  productList(){
+  productList() {
     return this.http.get<Product[]>('http://localhost:3000/products')
   }
 
-  deleteProduct(id:number){
+  deleteProduct(id: number) {
     return this.http.delete(`http://localhost:3000/products/${id}`)
   }
 
-  updateProductList(product:Product){
-    return this.http.put<Product>(`http://localhost:3000/products/${product.id}`,product)
+  updateProductList(product: Product) {
+    return this.http.put<Product>(`http://localhost:3000/products/${product.id}`, product)
   }
-  
-  getProduct(id:any){
+
+  getProduct(id: any) {
     return this.http.get<Product>(`http://localhost:3000/products/${id}`)
   }
-  popularProduct(){
+  popularProduct() {
     return this.http.get<Product[]>(`http://localhost:3000/products?_limit=3`)
   }
-  trendyProducts(){
+  trendyProducts() {
     return this.http.get<Product[]>(`http://localhost:3000/products?_limit=8`)
   }
-  searchProduct(query:string){
+  searchProduct(query: string) {
     return this.http.get<Product[]>(`http://localhost:3000/products?=${query}`)
   }
 
   //AddtoCart without LogIn 
-  localAddToCart(data:Product){
-    let cartData=[];
-    let localcart=localStorage.getItem('localCart')
-    if(!localcart){
-      localStorage.setItem('localCart',JSON.stringify([data]));
+  localAddToCart(data: Product) {
+    let cartData = [];
+    let localcart = localStorage.getItem('localCart')
+    if (!localcart) {
+      localStorage.setItem('localCart', JSON.stringify([data]));
       this.cartDataLength.emit([data]);
-    }else{
-      cartData=JSON.parse(localcart)
+    } else {
+      cartData = JSON.parse(localcart)
       cartData.push(data)
-      localStorage.setItem('localCart',JSON.stringify(cartData))
-      console.log("cartdatatatatataat",cartData)
+      localStorage.setItem('localCart', JSON.stringify(cartData))
+      console.log("cartdatatatatataat", cartData)
       this.cartDataLength.emit(cartData)
     }
-   
+
   }
 
-  removeItemFromCart(productId:number){
-    let cartData=localStorage.getItem('localCart');
-    if(cartData){
-      let items:Product[]=JSON.parse(cartData);
-      items=items.filter((item:Product)=>productId!==item.id)
-      localStorage.setItem('localCart',JSON.stringify(items))
+  removeItemFromCart(productId: number) {
+    let cartData = localStorage.getItem('localCart');
+    if (cartData) {
+      let items: Product[] = JSON.parse(cartData);
+      items = items.filter((item: Product) => productId !== item.id)
+      localStorage.setItem('localCart', JSON.stringify(items))
       this.cartDataLength.emit(items)
     }
   }
 
-  addToCart(cartData:cart){
-    return this.http.post('http://localhost:3000/cart',cartData)
+  addToCart(cartData: cart) {
+    return this.http.post('http://localhost:3000/cart', cartData)
   }
 
   //add to cart particular userid when user product added
-  getCardList(userId:number){
-    return this.http.get<Product[]>('http://localhost:3000/cart?userId='+userId,
-    {observe:'response'}).subscribe((res)=>{
-      console.log("ndend",res)
-      if(res && res.body){
-        this.cartDataLength.emit(res.body)
-      }
-    })
+  getCardList(userId: number) {
+    return this.http.get<Product[]>('http://localhost:3000/cart?userId=' + userId,
+      { observe: 'response' }).subscribe((res) => {
+        console.log("ndend", res)
+        if (res && res.body) {
+          this.cartDataLength.emit(res.body)
+        }
+      })
   }
 
-  removeToCart(cartId:number){
-    return this.http.delete('http://localhost:3000/cart/'+cartId)
+  removeToCart(cartId: number) {
+    return this.http.delete('http://localhost:3000/cart/' + cartId)
   }
 
-  currentCart(){
+  currentCart() {
     let userStore = localStorage.getItem('user');
     let userData = userStore && JSON.parse(userStore);
-    return this.http.get<any[]>('http://localhost:3000/cart?userId='+userData.id)
+    return this.http.get<any[]>('http://localhost:3000/cart?userId=' + userData.id)
   }
 
-  orderNow(data:order){
-    return this.http.post('http://localhost:3000/orders',data)
+  orderNow(data: order) {
+    return this.http.post('http://localhost:3000/orders', data)
   }
 
-  orderList(){
+  orderList() {
     let userStore = localStorage.getItem('user');
     let userData = userStore && JSON.parse(userStore);
-    return this.http.get<order[]>('http://localhost:3000/orders?userId='+userData.id)
+    return this.http.get<order[]>('http://localhost:3000/orders?userId=' + userData.id)
   }
 
-  deleteCart(cartId:number){
-    return this.http.delete('http://localhost:3000/cart/'+cartId,{observe:'response'}).subscribe((res)=>
-    {
-      if(res){
+  deleteCart(cartId: number) {
+    return this.http.delete('http://localhost:3000/cart/' + cartId, { observe: 'response' }).subscribe((res) => {
+      if (res) {
         this.cartDataLength.emit([])
       }
     })
   }
 
-  cancelOrder(orderId:number){
-    return this.http.delete('http://localhost:3000/orders/'+orderId);
+  cancelOrder(orderId: number) {
+    return this.http.delete('http://localhost:3000/orders/' + orderId);
   }
-  
+
 }

@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
       this.cartItem = JSON.parse(cartData).length
       console.log("cartlegthhhhh", this.cartItem)
     }
-    
+
     this.productservice.cartDataLength.subscribe((item) => {
       this.cartItem = item.length
     })

@@ -23,7 +23,7 @@ export class CartPageComponent implements OnInit {
     total: 0
   };
 
-  constructor(private productService: ProductService,private router:Router) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
     //lecture 43
@@ -58,8 +58,13 @@ export class CartPageComponent implements OnInit {
 
     //end   
   }
-  checkout(){
+
+  checkout() {
     this.router.navigate(['/checkout'])
+  }
+
+  removeToCart(cartId: number | undefined) {
+
   }
 }
 

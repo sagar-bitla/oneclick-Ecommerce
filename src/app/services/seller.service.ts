@@ -29,7 +29,7 @@ export class SellerService {
     return false
   }
 
-  
+
   //  reloader()  this function means once seller entered sign up after not relooad the signup page
   reloader() {
     if (localStorage.getItem('seller')) {

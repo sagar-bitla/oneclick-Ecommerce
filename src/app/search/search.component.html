@@ -1,18 +1,18 @@
 <div class="container">
-    <div class="row" >
-        <div class="col-3" *ngFor="let item of searchResult" >
-            <div class="card mt-2" >
+    <div class="row">
+        <div class="col-3" *ngFor="let item of searchResult">
+            <div class="card mt-2">
                 <a routerLink="/details/{{item.id}}">
                     <img class="product-header-img" src="{{item.url}}" alt="">
                 </a>
                 <div class="card-body">
                     <h3>{{item.name}}</h3>
-                    <span>color:{{item.color}}</span><br>                                                                                                                                                                                                             
+                    <span>color:{{item.color}}</span><br>
                     <span>Price:{{item.price}}</span><small>Rs</small>
                     <div class="product-footer">
                         <a href="">Details</a>
                         <a href="">Add to cart</a>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,4 +23,3 @@
 <ng-template #noProductFound>
     <h1>No Product Found</h1>
 </ng-template>
-
