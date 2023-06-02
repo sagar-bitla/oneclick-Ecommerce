@@ -64,7 +64,21 @@ export class CartPageComponent implements OnInit {
   }
 
   removeToCart(cartId: number | undefined) {
+    let user = localStorage.getItem('user')
+    let userId = user && JSON.parse(user).id
 
+    this.productService.cartDataLength.subscribe((result) => {
+      //lect 40
+      let item = result.filter((item: Product) => cartId?.toString() === item.productId?.toString())
+      console.log("111111", item)
+
+      if (item.length) {
+        console.log("iteemmm", item.length)
+        console.log("itemmm1", item[0])
+        this.cardData = item[0]
+        this.removeCart = true
+      }
+    })
   }
 }
 
