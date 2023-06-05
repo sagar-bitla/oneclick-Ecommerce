@@ -94,15 +94,6 @@
       "description": "128gb internal storage ",
       "url": "https://www.samsung.com/global/galaxy/main/images/kv-galaxy-s23_s.jpg",
       "id": 8
-    },
-    {
-      "name": "iphone",
-      "price": "2",
-      "color": "yellow",
-      "category": "mobile",
-      "description": "kidney becho mobile lelo",
-      "url": "https://www.instagram.com/reel/Clyq-Xrqjg5/?igshid=YmMyMTA2M2Y=",
-      "id": 9
     }
   ],
   "user": [
