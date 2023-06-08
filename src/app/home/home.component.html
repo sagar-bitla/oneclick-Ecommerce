@@ -33,5 +33,9 @@
             </div>
         </div>
     </div>
+    <form #whatsapp="ngForm" (ngSubmit)="redirect(whatsapp.value)">
+        <input type="text" name="name" placeholder="name" ngModel>
+        <button id="whatsapp" type="submit">Redirect to WhatsApp</button>
+      </form>
         
 </div>
