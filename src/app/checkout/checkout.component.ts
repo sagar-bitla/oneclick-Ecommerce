@@ -13,6 +13,7 @@ export class CheckoutComponent implements OnInit {
   totalPrice: number | undefined
   cardData: cart[] | undefined
   ordermsg: string | undefined
+  url: string | undefined
 
   constructor(private productService: ProductService, private router: Router) { }
 
@@ -20,7 +21,9 @@ export class CheckoutComponent implements OnInit {
 
     this.productService.currentCart().subscribe((result) => {
       let price = 0;
-      this.cardData = result
+      this.cardData = result;
+      this.url = this.cardData[0].url
+      
       result.forEach((item) => {
         if (item.quantity) {
           price = price + (+item.price * +item.quantity)
@@ -35,7 +38,7 @@ export class CheckoutComponent implements OnInit {
   //order now function inside bracket i use datatype and we can also used like mentioned inerface in datatype.ts
   //  but only three datatype is thier that's why we mentioned inside order now function
 
-  orderNow(data: { email: string, address: string, contact: string }) {
+  orderNow(data: { email: string, address: string, contact: string, url: string }) {
     let user = localStorage.getItem('user');
     let userId = user && JSON.parse(user).id
 
@@ -44,6 +47,7 @@ export class CheckoutComponent implements OnInit {
         ...data,
         totalPrice: this.totalPrice,
         userId,
+        url: this.url,
         //id mentioned in undefined bcoz id is generated dynamically lect 46
         id: undefined
       }
@@ -55,7 +59,7 @@ export class CheckoutComponent implements OnInit {
         }, 1000);
       })
       this.productService.orderNow(orderData).subscribe((result) => {
-
+        console.log("result", result)
         setTimeout(() => {
           const orderalert = "Your order has been successfully"
           this.router.navigate(['/my-orders'], { queryParams: { orderalert } })
