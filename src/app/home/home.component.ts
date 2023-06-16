@@ -41,10 +41,6 @@ export class HomeComponent implements OnInit {
     
   }
 
-  kk() {
-    return "uygbuhu"
-  }
-
     redirect(data:any){
       // console.log(data.phone)
       // let name=data.name
