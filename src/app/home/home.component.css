@@ -1,3 +1,14 @@
+
+:root {
+   /* light theme */
+   --bg-theme-light:#fff;
+   --color-theme-light:#222;
+
+   /* dark theme  */
+   --bg-theme-dark:#222;
+   --color-theme-dark:#fff;
+  }
+
 .product-header-img{
     object-fit: contain;
     height: 500px;
@@ -26,3 +37,37 @@
     border: 1px solid black;
     border-collapse: collapse;
 } */
+
+.gotop{
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: lightskyblue;
+    color: black;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 14px;
+    font-weight: 900;
+  }
+  .gotop.scrolled{
+    display: block;
+     position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color:lightskyblue;
+    color: black;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 14px; 
+    font-weight: 900;
+  }
+  

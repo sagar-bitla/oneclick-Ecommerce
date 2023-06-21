@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../data-type';
 import { ProductService } from '../services/product.service';
 import jsPDF from 'jspdf';
@@ -21,7 +21,11 @@ export class HomeComponent implements OnInit {
   popularProducts: undefined | Product[]
   trendyProducts: undefined | Product[]
   phoneNumber: any;
+  isScrolled: boolean = false;
   
+
+  storedTheme = localStorage.getItem('theme-color');
+
   @ViewChild('pdfContent', { static: false })
   pdfContent!: ElementRef;
 
@@ -108,6 +112,27 @@ export class HomeComponent implements OnInit {
   }); 
  
 
+    }
+
+    @HostListener('window:scroll')
+    onWindowScroll() {
+      this.isScrolled = (window.pageYOffset > 0);
+    }
+    
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth'});
+    }
+
+    setTheme(){
+      if(this.storedTheme === 'theme-dark'){
+        //toggle and update local storage
+        localStorage.setItem('theme-color','theme-light');
+        this.storedTheme=localStorage.getItem('theme-color');
+      }else{
+         //toggle and update local storage
+         localStorage.setItem('theme-color','theme-dark');
+         this.storedTheme=localStorage.getItem('theme-color');
+      }
     }
 
     
