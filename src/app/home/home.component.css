@@ -16,3 +16,33 @@
     border: 1px solid black;
     border-collapse: collapse;
 } */
+
+
+/* //multile button mobile,watch start */
+.tab ul{
+    padding: 10px;
+    background: rgb(86, 138, 158);
+    display: inline-block;
+    border-radius: 2px;
+    margin: 0;
+}
+
+.tab ul li{
+    display: inline-block;
+    list-style-type:none;
+    border-right: 2px solid #ffff;
+    color: lightblue;
+    font-size: 16px;
+    padding: 0 24px;
+    font-size: 16px;
+    padding: 0 24px;
+    font-weight: 300;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+}
+.tab ul li:last-child{
+    border-right: none;
+}
+
+/* //multile button mobile,watch end */
