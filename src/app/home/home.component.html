@@ -6,6 +6,7 @@
             </a>
         </div>
         <div class="carousel-caption">
+           
             <h3 style="color:black">{{item.name}}</h3>
             <p>{{item.description}}</p>
         </div>
@@ -35,8 +36,9 @@
     </div>
 </div>
 
+<button (click)="generatePDF()">Download PDF</button>
 
-<div class=" " id="product-cards">
+<div class=" pdfContent" id="product-cards" #pdfContent>
     <div class="row" style="margin-top: 30px;">
         <div class="col-sm-3" *ngFor="let item of trendyProducts">
             <div class="card mt-2">
@@ -56,4 +58,39 @@
             </div>
         </div>
     </div>
+    <form #whatsapp="ngForm" (ngSubmit)="redirect(whatsapp.value)">
+        <input type="text" name="name" placeholder="name" ngModel>
+        <button id="whatsapp" type="submit">Redirect to WhatsApp</button>
+        
+      </form>
+ 
+
+
+      <!-- it is ued for pdf -->
+    
+<!--     
+      <div #pdfContent>
+        <h1>Title</h1>
+        <p>This is a paragraph.</p>
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+        <table>
+          <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+          </tr>
+          <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+          </tr>
+        </table>
+      </div> -->
+      
 </div>
+
+    <button class="gotop" [ngClass]="{'scrolled': isScrolled}" (click)="scrollToTop()" title="Go to top" >^</button>
+
+
