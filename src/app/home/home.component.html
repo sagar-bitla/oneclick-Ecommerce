@@ -6,7 +6,6 @@
             </a>
         </div>
         <div class="carousel-caption">
-           
             <h3 style="color:black">{{item.name}}</h3>
             <p>{{item.description}}</p>
         </div>
@@ -39,8 +38,45 @@
 <button (click)="generatePDF()">Download PDF</button>
 
 <div class=" pdfContent" id="product-cards" #pdfContent>
+<div class="col-lg-12 col-md-12 col-12 text-center mt-4">
+    <h4>Download products pdf's</h4>
+    <button (click)="generatePDF()">Download PDF</button>   
+</div>
+
+
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-12">
+            <div class="tabs text-center">
+                <input type="radio" class="tabs__radio" name="tabs-example" id="tab1" checked>
+                <label for="tab1" class="tabs__label" (click)="filterProduct('all')">All Products</label>
+            
+                <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
+                <label for="tab2" class="tabs__label" (click)="filterProduct('Electronics')">Electronics</label>
+            
+                <input type="radio" class="tabs__radio" name="tabs-example" id="tab3">
+                <label for="tab3" class="tabs__label" (click)="filterProduct('Furniture')">Furniture</label>
+                
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-12">
+            <div class="search-button">
+                <span><i class="bi bi-search"></i></span>
+                <input class="form-control input-search pr-4" type="text" placeholder="Search Product"
+                    aria-label="default input example" [(ngModel)]="searchBy">
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+
+<!-- Display the products if they exist -->
+<div class=" pdfContent" id="product-cards" #pdfContent *ngIf="filterCategory && filterCategory.length > 0">
+     <!-- Display the filtered products here -->
     <div class="row" style="margin-top: 30px;">
-        <div class="col-sm-3" *ngFor="let item of trendyProducts">
+        <div class="col-sm-3" *ngFor="let item of filterCategory">
             <div class="card mt-2">
                 <a routerLink="/details/{{item.id}}">
                     <img class="product-cart-img" [src]=[item.url] alt="">
@@ -94,3 +130,14 @@
     <button class="gotop" [ngClass]="{'scrolled': isScrolled}" (click)="scrollToTop()" title="Go to top" >^</button>
 
 
+
+    </form>
+</div>
+
+<!-- Display "Not Found" message if no products were found -->
+<div class="text-center" *ngIf="filterCategory && filterCategory.length === 0">
+      <img src="../../assets/istockphoto-1290154699-612x612.jpg" class="img-fluid" width="25%">
+      <h4>Product Not Found....!</h4>
+  </div>
+
+<button class="gotop" [ngClass]="{'scrolled': isScrolled}" (click)="scrollToTop()" title="Go to top">^</button>

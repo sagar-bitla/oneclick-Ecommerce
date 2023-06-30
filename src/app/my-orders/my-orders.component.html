@@ -25,7 +25,7 @@
 <div class="container orderDatas">
     <div class="row" *ngFor="let order of orderData">
         <div class="col-sm-2">
-            <img class="order" src="../../assets/p11.jpg">
+            <img class="order" src="{{order.url}}">
         </div>
         <div class="col-sm-2">
             <span>#{{order.id}}</span>
