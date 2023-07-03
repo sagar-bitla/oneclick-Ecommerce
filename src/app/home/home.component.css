@@ -32,6 +32,11 @@
     outline: none;
     margin-top: 1rem;
     cursor: pointer;
+   
+}
+.inputform{
+  padding-right: 9rem;
+  padding-top: 0.6rem;
 }
 /* table, th, td {
     border: 1px solid black;
@@ -111,6 +116,16 @@
   }
   .input-search{
     box-shadow: none;
+    border: 1px solid;
   }
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
   
   

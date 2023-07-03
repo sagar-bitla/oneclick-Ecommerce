@@ -18,6 +18,14 @@
     <button (click)="generatePDF()">Download PDF</button>   
 </div>
 
+<div class="col-lg-12 col-md-12 col-12 text-center mt-4">
+<form #whatsapp="ngForm" (ngSubmit)="redirect(whatsapp.value)">
+    <input class="inputform" type="text" name="name" placeholder="name" ngModel ><br>
+    <button id="whatsapp" type="submit">Redirect to WhatsApp</button>
+
+</form>
+</div>
+
 
 
 <div class="container-fluid mt-4">
@@ -68,12 +76,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <form #whatsapp="ngForm" (ngSubmit)="redirect(whatsapp.value)">
-        <input type="text" name="name" placeholder="name" ngModel>
-        <button id="whatsapp" type="submit">Redirect to WhatsApp</button>
-
-    </form>
+    </div>  
 </div>
 
 <!-- Display "Not Found" message if no products were found -->
@@ -83,3 +86,32 @@
   </div>
 
 <button class="gotop" [ngClass]="{'scrolled': isScrolled}" (click)="scrollToTop()" title="Go to top">^</button>
+
+
+<div class="container mt-4">
+    <div class="col-lg-12 col-md-12 col-12">
+        <div class="search-button">
+            <span><i class="bi bi-search"></i></span>
+            <input class="form-control input-search pr-4" type="text" placeholder="Search Title"
+                aria-label="default input example" [(ngModel)]="searchTableBy"> 
+               
+        </div>
+    </div>
+    <table class="mt-4">
+        <thead>
+            <th> ID </th>
+            <th> title </th>
+            <th> body </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of jsondata1 | paginate: { itemsPerPage: 5, currentPage: p }">
+                <td>{{data.id}}</td>
+                <td>{{data.title}}</td>
+                <td>{{data.body}}</td>
+            </tr>
+        </tbody>
+        
+    </table>
+   
+    <pagination-controls class="d-flex flex-row-reverse " (pageChange)="p = $event"></pagination-controls>
+</div>

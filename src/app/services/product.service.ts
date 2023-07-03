@@ -42,6 +42,11 @@ export class ProductService {
     return this.http.get<Product[]>(`http://localhost:3000/products?=${query}`)
   }
 
+  //jsonplaceholder fake api
+  getFakeJson(){
+    return this.http.get('https://jsonplaceholder.typicode.com/posts')
+  }
+
   //AddtoCart without LogIn 
   localAddToCart(data: Product) {
     let cartData = [];

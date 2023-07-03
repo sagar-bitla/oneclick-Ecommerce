@@ -17,6 +17,7 @@ import { UserAuthComponent } from './user-auth/user-auth.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { NgxPaginationModule } from 'ngx-pagination'; 
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     NgbModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

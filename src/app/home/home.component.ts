@@ -1,10 +1,11 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { Product } from '../data-type';
+import { jsonAPI, Product } from '../data-type';
 import { ProductService } from '../services/product.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -22,6 +23,9 @@ export class HomeComponent implements OnInit {
   popularProducts: undefined | Product[]
   trendyProducts: undefined | Product[]
   filterCategory: undefined | Product[]
+  jsondata1:any
+  jsondata:any;
+  p:number =1;
 
   phoneNumber: any;
   isScrolled: boolean = false;
@@ -52,11 +56,15 @@ export class HomeComponent implements OnInit {
         if (product.category === "mobile" || product.category === "laptop") {
           product.category = "Electronics"
         }
-
       })
       console.log(this.trendyProducts, "mobile+laptop")
+    })
 
-
+    this.productService.getFakeJson().subscribe((res:any)=>{
+      this.jsondata=res
+      this.jsondata1=res
+      console.log("fakejsondata",this.jsondata)
+      console.log("fakejsondata111",this.jsondata1)
     })
 
   }
@@ -82,7 +90,9 @@ export class HomeComponent implements OnInit {
 
   set searchBy(product_name: string) {
     this._searchBy = product_name;
-    this.filterCategory = this.trendyProducts?.filter(product => product.name.toLocaleLowerCase().includes(product_name.toLocaleLowerCase()))
+    this.filterCategory = this.trendyProducts?.filter(product => product.name.toLocaleLowerCase().includes(product_name.toLocaleLowerCase())
+    
+    )
   }
 
 
@@ -164,20 +174,18 @@ export class HomeComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  setTheme() {
-    if (this.storedTheme === 'theme-dark') {
-      //toggle and update local storage
-      localStorage.setItem('theme-color', 'theme-light');
-      this.storedTheme = localStorage.getItem('theme-color');
-    } else {
-      //toggle and update local storage
-      localStorage.setItem('theme-color', 'theme-dark');
-      this.storedTheme = localStorage.getItem('theme-color');
-    }
-  }
 
+//  search functionality for jsonfake table
+ private _titleSearch = ""; 
+ get searchTableBy() {
+   return this._titleSearch
+ }
 
-
+ set searchTableBy(title_name: string) {
+   this._titleSearch = title_name;
+   this.jsondata1 = this.jsondata?.filter((res: { title: string; }) => res.title.toLocaleLowerCase().includes(title_name.toLocaleLowerCase()))
+   this.jsondata1 = this.jsondata?.filter((res: { body: string; }) => res.body.toLocaleLowerCase().includes(title_name.toLocaleLowerCase()))
+ }
 
 
 }
