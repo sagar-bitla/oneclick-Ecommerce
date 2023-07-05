@@ -6,6 +6,7 @@ import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { OrderPipe } from 'ngx-order-pipe';
 
 
 
@@ -23,9 +24,11 @@ export class HomeComponent implements OnInit {
   popularProducts: undefined | Product[]
   trendyProducts: undefined | Product[]
   filterCategory: undefined | Product[]
-  jsondata1:any
-  jsondata:any;
-  p:number =1;
+  jsondata1: any
+  jsondata: any;
+  p: number = 1;
+  order:any
+  showdata:undefined | Product[]
 
   phoneNumber: any;
   isScrolled: boolean = false;
@@ -60,11 +63,14 @@ export class HomeComponent implements OnInit {
       console.log(this.trendyProducts, "mobile+laptop")
     })
 
-    this.productService.getFakeJson().subscribe((res:any)=>{
-      this.jsondata=res
-      this.jsondata1=res
-      console.log("fakejsondata",this.jsondata)
-      console.log("fakejsondata111",this.jsondata1)
+    this.productService.getFakeJson().subscribe((res: any) => {
+      this.jsondata = res
+      this.jsondata1 = res
+      console.log("fakejsondata", this.jsondata)
+      console.log("fakejsondata111", this.jsondata1)
+      this.jsondata1.forEach((res:any) => {
+        this.order=res
+      });
     })
 
   }
@@ -83,7 +89,7 @@ export class HomeComponent implements OnInit {
   }
 
   //search functionality
-  private _searchBy = ""; 
+  private _searchBy = "";
   get searchBy() {
     return this._searchBy
   }
@@ -91,7 +97,7 @@ export class HomeComponent implements OnInit {
   set searchBy(product_name: string) {
     this._searchBy = product_name;
     this.filterCategory = this.trendyProducts?.filter(product => product.name.toLocaleLowerCase().includes(product_name.toLocaleLowerCase())
-    
+
     )
   }
 
@@ -175,17 +181,29 @@ export class HomeComponent implements OnInit {
   }
 
 
-//  search functionality for jsonfake table
- private _titleSearch = ""; 
- get searchTableBy() {
-   return this._titleSearch
- }
+  //  search functionality for jsonfake table
+  private _titleSearch = "";
+  get searchTableBy() {
+    return this._titleSearch
+  }
 
- set searchTableBy(title_name: string) {
-   this._titleSearch = title_name;
-   this.jsondata1 = this.jsondata?.filter((res: { title: string; }) => res.title.toLocaleLowerCase().includes(title_name.toLocaleLowerCase()))
-   this.jsondata1 = this.jsondata?.filter((res: { body: string; }) => res.body.toLocaleLowerCase().includes(title_name.toLocaleLowerCase()))
- }
+  set searchTableBy(title_name: string) {
+    this._titleSearch = title_name;
+    this.jsondata1 = this.jsondata.filter((res: { title: string; }) => res.title.toLocaleLowerCase().includes(title_name.toLocaleLowerCase()))
+    this.jsondata1 = this.jsondata.filter((res: { body: string; }) => res.body.toLocaleLowerCase().includes(title_name.toLocaleLowerCase()))
+  }
 
+  sortID(){
+    console.log("jbbb")
+    if(this.order){
+      let newrrr=this.jsondata1.sort((a:any,b:any)=>a.id - b.id);
+      this.showdata=newrrr
+    }else{
+      let newrrr=this.jsondata1.sort((a:any,b:any)=>b.id - a.id);
+      this.showdata=newrrr
+    }
+    this.order=!this.order
+  }
+ 
 
 }

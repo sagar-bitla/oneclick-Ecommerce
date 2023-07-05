@@ -99,12 +99,12 @@
     </div>
     <table class="mt-4">
         <thead>
-            <th> ID </th>
+            <th (click)="sortID()"> ID </th>
             <th> title </th>
             <th> body </th>
         </thead>
         <tbody>
-            <tr *ngFor="let data of jsondata1 | paginate: { itemsPerPage: 5, currentPage: p }">
+            <tr *ngFor="let data of jsondata1 | paginate: { itemsPerPage: 7, currentPage: p }">
                 <td>{{data.id}}</td>
                 <td>{{data.title}}</td>
                 <td>{{data.body}}</td>
