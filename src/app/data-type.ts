@@ -49,3 +49,9 @@ export interface order{
     id:number|undefined,
     url:string | undefined
 }
+export interface jsonAPI{
+    userId: number,
+    id: number|undefined,
+    title:string,
+    body:string
+}

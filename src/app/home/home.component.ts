@@ -1,10 +1,12 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { Product } from '../data-type';
+import { jsonAPI, Product } from '../data-type';
 import { ProductService } from '../services/product.service';
 // import jsPDF from 'jspdf';
 // import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { OrderPipe } from 'ngx-order-pipe';
 
 
 
@@ -22,12 +24,17 @@ export class HomeComponent implements OnInit {
   popularProducts: undefined | Product[]
   trendyProducts: undefined | Product[]
   filterCategory: undefined | Product[]
-
+  jsondata1: any
+  jsondata: any;
+  order: any
+  showdata: undefined | Product[]
+  isDesc: boolean = false
   phoneNumber: any;
   isScrolled: boolean = false;
 
+  //pagination 
+  p: number = 1;
 
-  storedTheme = localStorage.getItem('theme-color');
 
   @ViewChild('pdfContent', { static: false })
   pdfContent!: ElementRef;
@@ -52,11 +59,18 @@ export class HomeComponent implements OnInit {
         if (product.category === "mobile" || product.category === "laptop") {
           product.category = "Electronics"
         }
-
       })
       console.log(this.trendyProducts, "mobile+laptop")
+    })
 
-
+    this.productService.getFakeJson().subscribe((res: any) => {
+      this.jsondata = res
+      this.jsondata1 = res
+      console.log("fakejsondata", this.jsondata)
+      console.log("fakejsondata111", this.jsondata1)
+      this.jsondata1.forEach((res: any) => {
+        this.order = res
+      });
     })
 
   }
@@ -75,14 +89,16 @@ export class HomeComponent implements OnInit {
   }
 
   //search functionality
-  private _searchBy = ""; 
+  private _searchBy = "";
   get searchBy() {
     return this._searchBy
   }
 
   set searchBy(product_name: string) {
     this._searchBy = product_name;
-    this.filterCategory = this.trendyProducts?.filter(product => product.name.toLocaleLowerCase().includes(product_name.toLocaleLowerCase()))
+    this.filterCategory = this.trendyProducts?.filter(product => product.name.toLocaleLowerCase().includes(product_name.toLocaleLowerCase())
+
+    )
   }
 
 
@@ -164,19 +180,20 @@ export class HomeComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  setTheme() {
-    if (this.storedTheme === 'theme-dark') {
-      //toggle and update local storage
-      localStorage.setItem('theme-color', 'theme-light');
-      this.storedTheme = localStorage.getItem('theme-color');
-    } else {
-      //toggle and update local storage
-      localStorage.setItem('theme-color', 'theme-dark');
-      this.storedTheme = localStorage.getItem('theme-color');
-    }
+
+  //  search functionality for jsonfake table
+  private _titleSearch = "";
+  get searchTableBy() {
+    return this._titleSearch
   }
 
+  set searchTableBy(title_name: string) {
+    this._titleSearch = title_name;
+    this.jsondata1 = this.jsondata.filter((res: { title: string; }) => res.title.toLocaleLowerCase().includes(title_name.toLocaleLowerCase()))
+    this.jsondata1 = this.jsondata.filter((res: { body: string; }) => res.body.toLocaleLowerCase().includes(title_name.toLocaleLowerCase()))
+  }
 
+<<<<<<< HEAD
 //   ngOnInit(): void {
 //     this.productService.getObs1().subscribe(
 //       val => console.log(val),
@@ -224,7 +241,55 @@ export class HomeComponent implements OnInit {
 //   }
 // }
 
+=======
+  //sort number
+  sortID() {
+ 
+    if (this.order) {
+      let newrrr = this.jsondata1.sort((a: any, b: any) => a.id - b.id);
+      this.showdata = newrrr
+    } else {
+      let newrrr = this.jsondata1.sort((a: any, b: any) => b.id - a.id);
+      this.showdata = newrrr
+    }
+    this.order = !this.order
+  }
+>>>>>>> 4ba519d178a9f725842779160ffe98ae64a9171a
 
+  //sort alphabet
+  sortTitle(title: string) {
+    this.isDesc = !this.isDesc;
 
+    let direction = this.isDesc ? 1 : -1;
+
+    this.jsondata1?.sort(function (a: any, b: any) {
+      if (a[title] < b[title]) {
+        return -1 * direction;
+      } else if (a[title] > b[title]) {
+        return 1 * direction;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+  //sort alphabet
+  sortBody(body: string) {
+    this.isDesc = !this.isDesc;
+
+    let direction = this.isDesc ? 1 : -1;
+
+    this.jsondata1?.sort(function (a: any, b: any) {
+      if (a[body] < b[body]) {
+        return -1 * direction;
+      } else if (a[body] > b[body]) {
+        return 1 * direction;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+ 
 
 }
