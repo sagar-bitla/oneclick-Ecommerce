@@ -193,55 +193,6 @@ export class HomeComponent implements OnInit {
     this.jsondata1 = this.jsondata.filter((res: { body: string; }) => res.body.toLocaleLowerCase().includes(title_name.toLocaleLowerCase()))
   }
 
-<<<<<<< HEAD
-//   ngOnInit(): void {
-//     this.productService.getObs1().subscribe(
-//       val => console.log(val),
-//       err => console.log(err),
-//       ()=> console.log("obs1 complate"));
-
-//       this.productService.getObs2().subscribe(
-//         val => console.log(val),
-//         err => console.log(err),
-//         ()=> console.log("obs2 complate"));
-
-//       this.subscribe=  this.productService.getObs3().subscribe(
-//           val => console.log(val),
-//           err => console.log(err),
-//           ()=> console.log("obs3 complate"));
-
-//           this.productService.getObs4()
-//           .pipe(filter(val => val%2==0),map(val => val*3))
-//           .subscribe(val => console.log(val));
-
-//         // this.productList=this.productService.getProducts()         //////////////////////////////////////////    imppppppppppppppp
-//         // this.filterProducts=this.productList
-
-//         this.productService.getProducts().subscribe(
-//           data => {
-//             this.productList=data
-//             this.filterProducts=this.productList                              ////   get api through observable 
-//           }
-//         )
-
-//   }
-
-//   productList:Products[]=[]            ////api productlist import in service
-
-
-//   filterProducts=this.productList;
-
-// filterProduct(Rcategory:string):void{
-//   if(Rcategory===Category.ALL)
-//   {
-//     this.filterProducts=this.productList;
-//   }
-//   else{
-//     this.filterProducts=this.productList.filter(pro=>pro.category===Rcategory);
-//   }
-// }
-
-=======
   //sort number
   sortID() {
  
@@ -254,7 +205,6 @@ export class HomeComponent implements OnInit {
     }
     this.order = !this.order
   }
->>>>>>> 4ba519d178a9f725842779160ffe98ae64a9171a
 
   //sort alphabet
   sortTitle(title: string) {
