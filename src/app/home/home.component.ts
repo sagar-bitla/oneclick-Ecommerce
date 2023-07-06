@@ -26,15 +26,15 @@ export class HomeComponent implements OnInit {
   filterCategory: undefined | Product[]
   jsondata1: any
   jsondata: any;
-  p: number = 1;
-  order:any
-  showdata:undefined | Product[]
-
+  order: any
+  showdata: undefined | Product[]
+  isDesc: boolean = false
   phoneNumber: any;
   isScrolled: boolean = false;
 
+  //pagination 
+  p: number = 1;
 
-  storedTheme = localStorage.getItem('theme-color');
 
   @ViewChild('pdfContent', { static: false })
   pdfContent!: ElementRef;
@@ -68,8 +68,8 @@ export class HomeComponent implements OnInit {
       this.jsondata1 = res
       console.log("fakejsondata", this.jsondata)
       console.log("fakejsondata111", this.jsondata1)
-      this.jsondata1.forEach((res:any) => {
-        this.order=res
+      this.jsondata1.forEach((res: any) => {
+        this.order = res
       });
     })
 
@@ -193,17 +193,53 @@ export class HomeComponent implements OnInit {
     this.jsondata1 = this.jsondata.filter((res: { body: string; }) => res.body.toLocaleLowerCase().includes(title_name.toLocaleLowerCase()))
   }
 
-  sortID(){
-    console.log("jbbb")
-    if(this.order){
-      let newrrr=this.jsondata1.sort((a:any,b:any)=>a.id - b.id);
-      this.showdata=newrrr
-    }else{
-      let newrrr=this.jsondata1.sort((a:any,b:any)=>b.id - a.id);
-      this.showdata=newrrr
+  //sort number
+  sortID() {
+ 
+    if (this.order) {
+      let newrrr = this.jsondata1.sort((a: any, b: any) => a.id - b.id);
+      this.showdata = newrrr
+    } else {
+      let newrrr = this.jsondata1.sort((a: any, b: any) => b.id - a.id);
+      this.showdata = newrrr
     }
-    this.order=!this.order
+    this.order = !this.order
   }
+
+  //sort alphabet
+  sortTitle(title: string) {
+    this.isDesc = !this.isDesc;
+
+    let direction = this.isDesc ? 1 : -1;
+
+    this.jsondata1?.sort(function (a: any, b: any) {
+      if (a[title] < b[title]) {
+        return -1 * direction;
+      } else if (a[title] > b[title]) {
+        return 1 * direction;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+  //sort alphabet
+  sortBody(body: string) {
+    this.isDesc = !this.isDesc;
+
+    let direction = this.isDesc ? 1 : -1;
+
+    this.jsondata1?.sort(function (a: any, b: any) {
+      if (a[body] < b[body]) {
+        return -1 * direction;
+      } else if (a[body] > b[body]) {
+        return 1 * direction;
+      } else {
+        return 0;
+      }
+    });
+  }
+
  
 
 }
